@@ -102,7 +102,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -112,6 +112,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_AddNewSkill_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -126,7 +127,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -155,7 +156,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na"
                         };
-                         fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -165,6 +166,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_EditSkill_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -179,7 +181,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -208,7 +210,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -218,6 +220,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_DeleteSkill_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -232,7 +235,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -263,7 +266,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "allows to create new user and return success message"
                         };
-                       fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -273,6 +276,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_CreateNewUser_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -287,7 +291,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "allows to create new user and expecting success message but throw exception"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -316,7 +320,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "allows to update existing user and expecting 1 "
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                         await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -326,6 +330,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_UpdateUser_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -340,7 +345,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "allows to update existing user and expecting 1 but throw exception"
                     };
-                 fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -369,7 +374,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "allows to delete existing user and expecting 1 "
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -379,6 +384,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_RemoveUser_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -393,7 +399,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "allows to delete existing user and expecting 1 but throw exception"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -422,7 +428,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Shows list of users to admin user "
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -432,6 +438,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_AllUsers_Fail=" + "False";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -446,7 +453,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "expecting  to shows list of users to admin user but fail"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -476,7 +483,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na "
                         };
-                       fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -486,6 +493,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_SearchUserByFirstName_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -500,7 +508,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -529,7 +537,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na "
                         };
-                         fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -539,6 +547,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_SearchUserByEmail_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -553,7 +562,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -582,7 +591,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na "
                         };
-                         fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -592,6 +601,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_SearchUserByMobileNumber_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -606,7 +616,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -634,7 +644,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "False",
                             desc = "na "
                         };
-                         fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -644,6 +654,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "ExceptionTestFor_SearchUserBySkillRange_Fail=" + "True";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -658,7 +669,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "na"
                     };
-                     fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }

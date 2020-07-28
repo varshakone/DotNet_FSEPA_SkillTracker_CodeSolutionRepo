@@ -27,7 +27,7 @@ namespace SkillTracker.Tests.Utility
             serialize = new XmlSerializer(typeof(List<cases>));
             this.Testcases = new List<cases>();
         }
-        public  void WriteTestCaseResuItInXML(cases Cases)
+        public async Task<string>  WriteTestCaseResuItInXML(cases Cases)
         {
             try { 
             
@@ -59,7 +59,7 @@ namespace SkillTracker.Tests.Utility
                 stream.Close();
 
             }
-             //   return "test case registered";
+               return "test case registered";
             }
             catch(Exception ex)
             {

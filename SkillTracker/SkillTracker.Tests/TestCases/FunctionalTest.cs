@@ -100,7 +100,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get New Skill Added message from api"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -130,8 +130,9 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get New Skill Added message from api but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
+                var res = ex.Message;
             }
         }
 
@@ -177,7 +178,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get New Skill Added message from api"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -189,7 +190,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_ReviseSkill_ActionMethod=" + "False";
@@ -207,7 +208,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get New Skill Added message from api but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -251,7 +252,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get 1 value after successfull deletion of skill from api"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -263,7 +264,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_DestroySkill_ActionMethod=" + "False";
@@ -281,7 +282,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get 1 value after successfull deletion of skill from api but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -327,7 +328,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get New User Registered message from api"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -339,7 +340,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_NewUser_ActionMethod=" + "False";
@@ -357,7 +358,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get New User Registered message from api but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -414,7 +415,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get 1 as success value  from api after updating user"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -426,7 +427,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_ReviseUser_ActionMethod=" + "False";
@@ -444,7 +445,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get 1 as success value  from api after updating user but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -496,7 +497,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get 1 as success value  from api after deleting user"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -508,7 +509,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_DestroyUser_ActionMethod=" + "False";
@@ -526,7 +527,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get 1 as success value  from api after deleting user but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -570,7 +571,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get list of users  from api "
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -582,7 +583,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_AllUsers_ActionMethod=" + "False";
@@ -600,7 +601,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get list of users  from api  from api but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -641,7 +642,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "True",
                         desc = "Expected to get user details from api after filtering user by firstname"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
             else
@@ -654,7 +655,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_InspectUserByFirstName_ActionMethod=" + "False";
@@ -672,7 +673,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get user details from api after filtering user by firstname but fail"
                     };
-        fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
 }
         }
@@ -714,7 +715,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get user details from api after filtering user by email"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -727,7 +728,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_InspectUserByEmail_ActionMethod=" + "False";
@@ -745,7 +746,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get user details from api after filtering user by email but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -787,7 +788,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get user details from api after filtering user by mobilenumber"
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -800,7 +801,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_InspectUserByMobileNumber_ActionMethod=" + "False";
@@ -818,7 +819,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get user details from api after filtering user by mobile number but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -859,7 +860,7 @@ namespace SkillTracker.Tests.TestCases
                             mandatory = "True",
                             desc = "Expected to get user details from api after filtering user by  Map skill "
                         };
-                        fileUtility.WriteTestCaseResuItInXML(newcase);
+                        await fileUtility.WriteTestCaseResuItInXML(newcase);
                     }
                 }
                 else
@@ -872,7 +873,7 @@ namespace SkillTracker.Tests.TestCases
 
             catch (Exception ex)
             {
-
+                var res = ex.Message;
                 //Write test result in text file
 
                 String testResult = "FunctionalTestFor_InspectUserBySkillRange_ActionMethod=" + "False";
@@ -890,7 +891,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "Expected to get user details from api after filtering user by Map skill but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }

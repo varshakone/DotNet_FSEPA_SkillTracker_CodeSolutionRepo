@@ -15,9 +15,7 @@ namespace SkillTracker.Tests.TestCases
     [CollectionDefinition("parallel", DisableParallelization = false)]
     public class DatabaseConnectionTest
     {
-        private Mock<IOptions<MongoSettings>> _mockOptions;
-        private Mock<IMongoDatabase> _mockDB;
-        private Mock<IMongoClient> _mockClient;
+       
         static FileUtility fileUtility;
         MongoDBUtility MongoDBUtility;
         IConfigurationRoot config;
@@ -60,6 +58,7 @@ namespace SkillTracker.Tests.TestCases
 
                 // Write test case result in text file
                 fileUtility.WriteTestCaseResuItInText(testResult);
+                var res =ex.Message;
             }
         }
 
@@ -95,6 +94,7 @@ namespace SkillTracker.Tests.TestCases
 
                 // Write test case result in text file
                 fileUtility.WriteTestCaseResuItInText(testResult);
+                var res = ex.Message;
             }
         }
     }

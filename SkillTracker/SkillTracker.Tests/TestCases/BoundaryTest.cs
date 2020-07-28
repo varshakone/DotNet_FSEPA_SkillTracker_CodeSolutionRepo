@@ -22,16 +22,11 @@ namespace SkillTracker.Tests.TestCases
         // private references
         private User _user;
         IConfigurationRoot config;
-        private Mock<IMongoCollection<Skill>> _mockCollectionSkill;
-        private Mock<IMongoCollection<User>> _mockCollectionUser;
-        private Mock<IMongoDBContext> _mockContext;
-        private Skill _skill;
+         private Skill _skill;
         private MongoDBContext context;
-
-        private ISkillService _skillService;
+                private ISkillService _skillService;
         private IUserService _userService;
-        private IAdminService _adminService;
-        private MongoDBUtility MongoDBUtility;
+         private MongoDBUtility MongoDBUtility;
 
         static FileUtility fileUtility;
         String testResult;
@@ -104,7 +99,7 @@ namespace SkillTracker.Tests.TestCases
                                 mandatory = "True",
                                 desc = "expecting to create new user after validating email Id"
                             };
-                             fileUtility.WriteTestCaseResuItInXML(newcase);
+                            await fileUtility.WriteTestCaseResuItInXML(newcase);
                         }
                     }
                 }
@@ -115,6 +110,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "BoundaryTestFor_ValidEmail=" + "False";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -129,7 +125,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "expecting to create new user after validating email Id but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -163,7 +159,7 @@ namespace SkillTracker.Tests.TestCases
                                 mandatory = "True",
                                 desc = "expecting to create new user after validating mobile number length as 10"
                             };
-                            fileUtility.WriteTestCaseResuItInXML(newcase);
+                            await fileUtility.WriteTestCaseResuItInXML(newcase);
                         }
                     }
                 }
@@ -174,6 +170,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "BoundaryTestFor_ValidMobileNumberLength=" + "False";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -188,7 +185,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "expecting to create new user after validating mobile number length as 10 but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -223,7 +220,7 @@ namespace SkillTracker.Tests.TestCases
                                 mandatory = "True",
                                 desc = "expecting to create new user after validating firstname and lastname as non-numeric only"
                             };
-                             fileUtility.WriteTestCaseResuItInXML(newcase);
+                            await fileUtility.WriteTestCaseResuItInXML(newcase);
                         }
                     }
                 }
@@ -235,6 +232,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "BoundaryTestFor_ValidFirstAndLastName=" + "False";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -249,7 +247,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "expecting to create new user after validating firstname and lastname as non-numeric only but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
@@ -286,7 +284,7 @@ namespace SkillTracker.Tests.TestCases
                                 mandatory = "True",
                                 desc = "expecting to create new skill after validating skill name as non-numeric only"
                             };
-                             fileUtility.WriteTestCaseResuItInXML(newcase);
+                            await fileUtility.WriteTestCaseResuItInXML(newcase);
                         }
                     }
                 }
@@ -298,6 +296,7 @@ namespace SkillTracker.Tests.TestCases
             }
             catch (Exception exception)
             {
+                var res = exception.Message;
                 testResult = "BoundaryTestFor_ValidSkillName=" + "False";
                 fileUtility.WriteTestCaseResuItInText(testResult);
                 // Write test case result in xml file
@@ -312,7 +311,7 @@ namespace SkillTracker.Tests.TestCases
                         mandatory = "False",
                         desc = "expecting to create new skill after validating skill name as non-numeric only but fail"
                     };
-                    fileUtility.WriteTestCaseResuItInXML(newcase);
+                    await fileUtility.WriteTestCaseResuItInXML(newcase);
                 }
             }
         }
