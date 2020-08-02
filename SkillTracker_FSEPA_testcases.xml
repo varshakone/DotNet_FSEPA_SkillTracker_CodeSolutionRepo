@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<test-cases>
+ <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase"> <test-case-type>Functional</test-case-type>
+  <test-case-type>Functional</test-case-type>
+  <expected-output>True</expected-output>
+  <name>FunctionalTestFor_NewSkill_ActionMethod</name>
+  <weight>5</weight>
+  <mandatory>True</mandatory>
+  <desc>Expecting to retrun NewSkill action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_ReviseSkill_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun ReviseSkill action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_DestroySkill_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun DestroySkill action result</desc>
+ </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_NewUser_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun NewUser action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_ReviseUser_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun NewUser action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_DestroyUser_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun DestroyUser action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_AllUsers_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun allUser action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_InspectUserByFirstName_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun SearchUser action result by filtering user with FirstName</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_InspectUserByEmail_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun SearchUser action result by filtering user with Email ID</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_InspectUserByMobileNumber_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun SearchUser action result</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Functional</test-case-type>
+    <expected-output>True</expected-output>
+    <name>FunctionalTestFor_InspectUserBySkillRange_ActionMethod</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>Expecting to retrun allUser action result with skill range 1-5</desc>
+  </cases>
+ <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+   <expected-output>True</expected-output>
+    <name>ExceptionTestFor_AddNewSkill_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+ </cases>
+ <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+   <expected-output>True</expected-output>
+    <name>ExceptionTestFor_EditSkill_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_DeleteSkill_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_CreateNewUser_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to create new user and expecting success message but throw exception</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_UpdateUser_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to update existing user and expecting 1 but throw exception</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_RemoveUser_Fail</name>
+    <weight>1</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to delete existing user and expecting 1 but throw exception</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_AllUsers_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>expecting  to shows list of users to admin user but fail</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_SearchUserByFirstName_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_SearchUserByEmail_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_SearchUserByMobileNumber_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Exception</test-case-type>
+    <expected-output>True</expected-output>
+    <name>ExceptionTestFor_SearchUserBySkillRange_Fail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_AddNewSkill_Possitive</name>
+     <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to add new skill and return success message</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_EditSkill_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_DeleteSkill_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na</desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>Task BusinessTestFor_CreateNewUser_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to create new user and return success message </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_UpdateUser_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to update existing user and expecting 1 </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_RemoveUser_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>allows to delete existing user and expecting 1 </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_AllUsers_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_SearchUserByEmail_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_SearchUserByFirstName_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_SearchUserByMobileNumber_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Business</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BusinessTestFor_SearchUserBySkillRange_Possitive</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>na </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Boundary</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BoundaryTestFor_ValidEmail</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>expecting to create new user after validating email Id </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Boundary</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BoundaryTestFor_ValidMobileNumberLength</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>expecting to create new user after validating mobile number length as 10 </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Boundary</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BoundaryTestFor_ValidFirstAndLastName</name>
+     <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>expecting to create new user after validating firstname and lastname as non-numeric only </desc>
+  </cases>
+  <cases xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:com.assessment.data.TestCase">
+    <test-case-type>Boundary</test-case-type>
+    <expected-output>True</expected-output>
+    <name>BoundaryTestFor_ValidSkillName</name>
+    <weight>5</weight>
+    <mandatory>True</mandatory>
+    <desc>expecting to create new skill after validating skill name as non-numeric only </desc>
+  </cases>
+</test-cases>
