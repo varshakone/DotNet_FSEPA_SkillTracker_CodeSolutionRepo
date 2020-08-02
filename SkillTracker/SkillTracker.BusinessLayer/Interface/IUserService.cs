@@ -8,9 +8,13 @@ namespace SkillTracker.BusinessLayer.Interface
 {
   public  interface IUserService
     {
-        String CreateNewUser(User user);
-        int UpdateUser(User user);
-        int RemoveUser(String firstname, String lastname);
-        string ValidateUserExist(User user);
+        Task<String> CreateNewUser(User user);
+        Task<int> UpdateUser(User user);
+        Task<int> RemoveUser(String firstname, String lastname);
+       Task<IEnumerable<User>> GetAllUsers();
+        Task<User> SearchUserByFirstName(String firstname);
+        Task<User> SearchUserByEmail(String Email);
+        Task<User> SearchUserByMobile(long mobilenumber);
+        Task<IEnumerable<User>> SearchUserBySkillRange(int startvalue, int endvalue);
     }
 }

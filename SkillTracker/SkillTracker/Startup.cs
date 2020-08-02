@@ -10,13 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.VisualStudio.Web.CodeGeneration;
 using SkillTracker.BusinessLayer.Interface;
 using SkillTracker.BusinessLayer.Service;
+using SkillTracker.BusinessLayer.Service.Repository;
 using SkillTracker.DataLayer;
-using Microsoft.Extensions.Logging;
 
-namespace SkillTracker.API
+namespace SkillTracker
 {
     public class Startup
     {
@@ -39,19 +38,20 @@ namespace SkillTracker.API
                 if (options.Connection == null && options.DatabaseName == null)
                 {
                     options.Connection =
-                    "mongodb://Localhost:27017";
-                    options.DatabaseName = "SkillTrackerDB";
+                    "mongodb://user:password@127.0.0.1:27017/guestbook";
+                    options.DatabaseName = "guestbook";
                 }
             }
             );
             services.AddScoped<ISkillService, SkillService>();
-            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
             services.AddScoped<IMongoDBContext, MongoDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -62,17 +62,8 @@ namespace SkillTracker.API
                 app.UseHsts();
             }
 
-            app.UseStatusCodePages(async context =>
-            {
-                var code = context.HttpContext.Response.StatusCode;
-                if (code == 404)
-                {
-                    logger.Log(LogLevel.Error, null, "log message");
-                }
-            });
             app.UseHttpsRedirection();
-
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc();
         }
     }
 }

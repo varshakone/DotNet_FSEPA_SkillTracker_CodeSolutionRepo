@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SkillTracker.BusinessLayer.Interface;
+using SkillTracker.BusinessLayer.Service.Repository;
 using SkillTracker.DataLayer;
 using SkillTracker.Entities;
 using System;
@@ -12,66 +13,70 @@ namespace SkillTracker.BusinessLayer.Service
     public class SkillService : ISkillService
     {
 
-        private readonly IMongoDBContext _mongoDBContext;
-        private readonly IMongoCollection<Skill> _mongoCollection;
+        private readonly ISkillRepository _skillRepository;
 
-        public SkillService(IMongoDBContext mongoDBContext)
+        /// <summary>
+        /// Create Object of type IUserRepository
+        /// </summary>
+        /// <param name="userRepository"></param>
+        public SkillService(ISkillRepository skillRepository)
         {
-            _mongoDBContext = mongoDBContext;
-            _mongoCollection = _mongoDBContext.GetCollection<Skill>(typeof(Skill).Name);
+            _skillRepository = skillRepository;
         }
 
-        // Save new skill upgarded by full stack engineer into database
-        public string AddNewSkill(Skill skill)
+        /// <summary>
+        /// Save new skill upgarded by full stack engineer into database
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        
+        public async Task<string> AddNewSkill(Skill skill)
         {
-            //MongoDB Logic to save Skill document into database
+            //Business Logic to call SkillRepository method
             try
             {
-               _mongoCollection.InsertOne(skill);
-                return "New Skill Added";
+              var result = await _skillRepository.AddNewSkill(skill);
+                return result;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        // delete skill of full stack engineer from database
-        public int DeleteSkill(string skillname)
+
+        /// <summary>
+        /// delete skill of full stack engineer from database
+        /// </summary>
+        /// <param name="skillname"></param>
+        /// <returns></returns>
+       public async Task<int> DeleteSkill(string skillname)
         {
-            //MongoDB Logic to delete Skill document into database
+            //Business Logic to call SkillRepository method
             try
             {
-                int count =0;
-                var filterCriteria = Builders<Skill>.Filter.Eq("SkillName", skillname);
-              var deleteResult =  _mongoCollection.DeleteOne(filterCriteria);
-                if(deleteResult.IsAcknowledged)
-                {
-                    count = (int)deleteResult.DeletedCount;
-                }
-                return count;
+                var result = await _skillRepository.DeleteSkill(skillname);
+                return result;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        // update skill upgarded by full stack engineer from database
-        public int EditSkill(Skill skill)
+
+
+        /// <summary>
+        /// update skill upgarded by full stack engineer from database
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+
+        public async Task<int> EditSkill(Skill skill)
         {
-            //MongoDB Logic to update Skill document into database
+            //Business Logic to call SkillRepository method
             try
             {
-                int count = 0;
-                var filterCriteria = Builders<Skill>.Filter.Eq("SkillName", skill.SkillName);
-               
-                var updateElements = Builders<Skill>.Update.Set("SkillLevel", skill.SkillLevel).Set("SkillType", skill.SkillType).Set("SkillTotalExperiance", skill.SkillTotalExperiance);
-
-                var updateResult =  _mongoCollection.UpdateOne(filterCriteria,updateElements,null);
-                if (updateResult.IsAcknowledged)
-                {
-                    count = (int)updateResult.ModifiedCount;
-                }
-                return count;
+                var result = await _skillRepository.EditSkill(skill);
+                return result;
             }
             catch (Exception ex)
             {

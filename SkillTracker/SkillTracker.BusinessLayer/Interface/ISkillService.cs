@@ -8,9 +8,9 @@ namespace SkillTracker.BusinessLayer.Interface
 {
    public interface ISkillService
     {
-        String AddNewSkill(Skill skill);
-        int EditSkill(Skill skill);
-        int DeleteSkill(String skillname);
+        Task<String> AddNewSkill(Skill skill);
+        Task<int> EditSkill(Skill skill);
+        Task<int> DeleteSkill(String skillname);
 
     }
 }

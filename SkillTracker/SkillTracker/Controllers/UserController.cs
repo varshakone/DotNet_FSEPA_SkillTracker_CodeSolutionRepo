@@ -19,7 +19,12 @@ namespace SkillTracker.API.Controllers
             _userService = userService;
         }
 
-        //Rest post api to return success message by creating new user
+        /// <summary>
+        /// Rest post api to return success message by creating new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        
         [Route("api/user/new")]
         [HttpPost]
         public async Task< ActionResult<String>> CreateNewUser(User user)
@@ -27,7 +32,7 @@ namespace SkillTracker.API.Controllers
             try
             {
                 //Business logic to call user servic method which returns success message after creating new user
-                var result = _userService.CreateNewUser(user);
+                var result =await _userService.CreateNewUser(user);
                 return result;
             }
             catch (Exception exception)
@@ -37,7 +42,12 @@ namespace SkillTracker.API.Controllers
 
         }
 
-        //Rest post api to return 1 after updation of user
+        /// <summary>
+        /// Rest post api to return 1 after updation of user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        
         [Route("api/user/edit")]
         [HttpPost]
         public async Task<ActionResult<int>>  ReviseUser(User user)
@@ -45,7 +55,7 @@ namespace SkillTracker.API.Controllers
             try
             {
                 //Business logic to call user servic method which returns 1 on successfull updation of user
-                var result = _userService.UpdateUser(user);
+                var result =await _userService.UpdateUser(user);
                 return result;
             }
             catch (Exception exception)
@@ -55,7 +65,13 @@ namespace SkillTracker.API.Controllers
 
         }
 
-        //Rest post api to return 1 after deletion of user
+        /// <summary>
+        /// Rest post api to return 1 after deletion of user
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <returns></returns>
+        
         [Route("api/user/delete")]
         [HttpPost]
         public async Task< ActionResult<int>> Destroyuser(String firstname, String lastname)
@@ -63,8 +79,139 @@ namespace SkillTracker.API.Controllers
             try
             {
                 //Business logic to call user servic method which returns 1 on successfull deletion of user
-                var result =  _userService.RemoveUser(firstname, lastname);
+                var result =await  _userService.RemoveUser(firstname, lastname);
                 return result;
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        [Route("/api/admin/test")]
+        [HttpGet]
+        public ActionResult<String> Get()
+        {
+            try
+            {
+
+                return "Hi";
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// Rest post api to return list of users
+        /// </summary>
+        /// <returns></returns>
+        
+        [Route("/api/user/alluser")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<User>>> AllUsers()
+        {
+            try
+            {
+                //Business logic to call admin servic method which returns list of users
+                var result =await _userService.GetAllUsers();
+                return result as List<User>;
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// Rest post api to return  user filtered by first name
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <returns></returns>
+        
+        [Route("/api/user/byfirstname")]
+        [HttpPost]
+        public async Task<ActionResult<User>> SearchByFirstName(String firstname)
+        {
+            try
+            {
+                //Business logic to call admin servic method which returns  user filtered by first name
+                var result =await _userService.SearchUserByFirstName(firstname);
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// Rest post api to return  user filtered by email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        
+        [Route("/api/user/byemail")]
+        [HttpPost]
+        public async Task<ActionResult<User>> SearchByEmail(String email)
+        {
+            try
+            {
+                //Business logic to call admin servic method which returns  user filtered by email id
+                var result =await _userService.SearchUserByEmail(email);
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// Rest post api to return  user filtered by mobile number
+        /// </summary>
+        /// <param name="mobile"></param>
+        /// <returns></returns>
+        
+        [Route("/api/user/bymobile")]
+        [HttpPost]
+        public async Task<ActionResult<User>> SearchByMobileNumber(long mobile)
+        {
+            try
+            {
+                //Business logic to call admin servic method which returns  user filtered by mobile number
+                var result =await _userService.SearchUserByMobile(mobile);
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// Rest post api to return  user filtered by Skill range
+        /// </summary>
+        /// <param name="startvalue"></param>
+        /// <param name="endvalue"></param>
+        /// <returns></returns>
+        
+        [Route("/api/user/byskillrange")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<User>>> SearchBySkillRange(int startvalue,int endvalue)
+        {
+            try
+            {
+                //Business logic to call admin servic method which returns list of  users filtered by range value
+                var result =await _userService.SearchUserBySkillRange(startvalue,endvalue);
+                return result as List<User>;
             }
             catch (Exception exception)
             {

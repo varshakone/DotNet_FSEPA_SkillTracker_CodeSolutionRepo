@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using Moq;
 using SkillTracker.BusinessLayer.Interface;
 using SkillTracker.BusinessLayer.Service;
+using SkillTracker.BusinessLayer.Service.Repository;
 using SkillTracker.DataLayer;
 using SkillTracker.Entities;
 using SkillTracker.Tests.Utility;
@@ -23,15 +24,15 @@ namespace SkillTracker.Tests.TestCases
         // private references declaration
         private User _user;
         IConfigurationRoot config;
-        private Mock<IMongoCollection<Skill>> _mockCollectionSkill;
-        private Mock<IMongoCollection<User>> _mockCollectionUser;
-        private Mock<IMongoDBContext> _mockContext;
+        private readonly IUserRepository _userRepository;
+        private readonly ISkillRepository _skillRepository;
+        
         private Skill _skill;
-        private MongoDBContext context;
+        private IMongoDBContext context;
 
         private ISkillService _skillService;
         private IUserService _userService;
-        private IAdminService _adminService;
+        
         static FileUtility fileUtility;
         String testResult;
 
@@ -40,11 +41,13 @@ namespace SkillTracker.Tests.TestCases
         public BusinessLogicTest()
         {
             MongoDBUtility mongoDBUtility = new MongoDBUtility();
-            _mockContext = mongoDBUtility.MockContext;
-            _mockCollectionSkill = mongoDBUtility.MockCollectionSkill;
-            _mockCollectionUser = mongoDBUtility.MockCollectionUser;
-              context = mongoDBUtility.MongoDBContext;
+            context = mongoDBUtility.MongoDBContext;
 
+            _userRepository = new UserRepository(context);
+            _skillRepository = new SkillRepository(context);
+
+            _userService = new UserService(_userRepository);
+            _skillService = new SkillService(_skillRepository);
             _skill = new Skill
             {
                 SkillName = ".Net core 3.1",
@@ -72,15 +75,19 @@ namespace SkillTracker.Tests.TestCases
             fileUtility.CreateTextFile();
         }
 
-        //Test methods for Skill Service
+        /// <summary>
+        /// Test methods for Skill Service
+        /// Test method to create new skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
      public async Task BusinessTestFor_AddNewSkill_Possitive()
         {
             try
             {
           
-                _skillService = new SkillService(context);
-                var result = _skillService.AddNewSkill(_skill);
+                
+                var result =await _skillService.AddNewSkill(_skill);
                 if (result == "New Skill Added")
                 {
                     testResult = "BusinessTestFor_AddNewSkill_Possitive=" + "True";
@@ -127,16 +134,19 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_EditSkill_Possitive()
         {
             try
             {
 
-                _skillService = new SkillService(context);
-                _skill.SkillLevel = SkillLevel.Expert;
+                 _skill.SkillLevel = SkillLevel.Expert;
                 _skill.SkillTotalExperiance = 10;
-                var result =  _skillService.EditSkill(_skill);
+                var result =await  _skillService.EditSkill(_skill);
                 if (result == 1)
                 {
                     testResult = "BusinessTestFor_EditSkill_Possitive=" + "True";
@@ -183,14 +193,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to delete skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_DeleteSkill_Possitive()
         {
             try
             {
 
-                _skillService = new SkillService(context);
-               var result = _skillService.DeleteSkill(_skill.SkillName);
+                
+               var result =await _skillService.DeleteSkill(_skill.SkillName);
                 if (result == 1)
                 {
                     testResult = "BusinessTestFor_DeleteSkill_Possitive=" + "True";
@@ -237,7 +251,12 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for User Service
+        
+        /// <summary>
+        /// Test Methods for User Service
+        /// test method to create new user
+        ///</summary>
+        /// <returns></returns>
 
         [Fact]
         public async Task BusinessTestFor_CreateNewUser_Possitive()
@@ -245,8 +264,7 @@ namespace SkillTracker.Tests.TestCases
             try
             {
                 fileUtility.ValidateUser(_user);
-              _userService = new UserService(context);
-                var result = _userService.CreateNewUser(_user);
+                var result =await _userService.CreateNewUser(_user);
                 if (result == "New User Register")
                 {
                     testResult = "BusinessTestFor_CreateNewUser_Possitive=" + "True";
@@ -293,6 +311,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_UpdateUser_Possitive()
         {
@@ -313,9 +335,9 @@ namespace SkillTracker.Tests.TestCases
                 user.Mobile = 9960814103;
                 user.MapSkills = 5;
 
-                _userService = new UserService(context);
+               
                             
-                var result =  _userService.UpdateUser(user);
+                var result =await  _userService.UpdateUser(user);
                 if (result == 1)
                 {
                     testResult = "BusinessTestFor_UpdateUser_Possitive=" + "True";
@@ -362,6 +384,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to delete user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_RemoveUser_Possitive()
         {
@@ -377,9 +403,9 @@ namespace SkillTracker.Tests.TestCases
 
                 };
                 fileUtility.TestData(user);
-                _userService = new UserService(context);
+                
                
-                var result = _userService.RemoveUser(user.FirstName, user.LastName);
+                var result =await _userService.RemoveUser(user.FirstName, user.LastName);
                 if (result == 1)
                 {
                     testResult = "BusinessTestFor_RemoveUser_Possitive=" + "True";
@@ -426,14 +452,17 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for Admin Service
+        /// <summary>
+        /// test method to retrieve all users
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_AllUsers_Possitive()
         {
             try
             {
-                _adminService = new AdminService(context);
-                   var result =  _adminService.GetAllUsers() as List<User>;
+               
+                   var result =await  _userService.GetAllUsers() as List<User>;
                 if (result.Count > 0)
                 {
                     testResult = "BusinessTestFor_AllUsers_Possitive=" + "True";
@@ -480,13 +509,17 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by first name
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_SearchUserByFirstName_Possitive()
         {
             try
             {
-                _adminService = new AdminService(context);
-                 var result = _adminService.SearchUserByFirstName(_user.FirstName);
+                
+                 var result =await _userService.SearchUserByFirstName(_user.FirstName);
                 if (result != null)
                 {
                     testResult = "BusinessTestFor_SearchUserByFirstName_Possitive=" + "True";
@@ -533,14 +566,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by email id
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_SearchUserByEmail_Possitive()
         {
             try
             {
-                _adminService = new AdminService(context);
+                
             
-                var result = _adminService.SearchUserByEmail(_user.Email);
+                var result =await _userService.SearchUserByEmail(_user.Email);
                 if (result != null)
                 {
                     testResult = "BusinessTestFor_SearchUserByEmail_Possitive=" + "True";
@@ -587,15 +624,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by mobile number
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_SearchUserByMobileNumber_Possitive()
         {
             try
             {
               
-                _adminService = new AdminService(context);
-              
-                var result = _adminService.SearchUserByMobile(_user.Mobile);
+                            
+                var result =await _userService.SearchUserByMobile(_user.Mobile);
                 if (result != null)
                 {
                     testResult = "BusinessTestFor_SearchUserByMobileNumber_Possitive=" + "True";
@@ -641,14 +681,19 @@ namespace SkillTracker.Tests.TestCases
                 }
             }
         }
+
+        /// <summary>
+        /// test method to search user by it's skill range
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BusinessTestFor_SearchUserBySkillRange_Possitive()
         {
             try
             {
-                _adminService = new AdminService(context);
+               
                 
-                var result =  _adminService.SearchUserBySkillRange(2);
+                var result =await  _userService.SearchUserBySkillRange(2,2);
                 if (result != null)
                 {
                     testResult = "BusinessTestFor_SearchUserBySkillRange_Possitive=" + "True";

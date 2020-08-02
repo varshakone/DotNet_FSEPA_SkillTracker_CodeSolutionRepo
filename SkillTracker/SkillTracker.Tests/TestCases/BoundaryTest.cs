@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using Moq;
 using SkillTracker.BusinessLayer.Interface;
 using SkillTracker.BusinessLayer.Service;
+using SkillTracker.BusinessLayer.Service.Repository;
 using SkillTracker.DataLayer;
 using SkillTracker.Entities;
 using SkillTracker.Tests.Utility;
@@ -22,19 +23,24 @@ namespace SkillTracker.Tests.TestCases
         // private references
         private User _user;
         IConfigurationRoot config;
-         private Skill _skill;
-        private MongoDBContext context;
-                private ISkillService _skillService;
+        private Skill _skill;
+        private IMongoDBContext context;
+        private ISkillService _skillService;
         private IUserService _userService;
-         private MongoDBUtility MongoDBUtility;
+        private MongoDBUtility MongoDBUtility;
+        private readonly IUserRepository _userRepository;
+        private readonly ISkillRepository _skillRepository;
+
 
         static FileUtility fileUtility;
         String testResult;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public BoundaryTest()
         {
-          
-
-            _skill = new Skill
+         _skill = new Skill
             {
                 SkillName = ".Net core 3.1",
                 SkillCategory = SkillCategory.DotNet,
@@ -54,10 +60,17 @@ namespace SkillTracker.Tests.TestCases
 
             MongoDBUtility = new MongoDBUtility();
             context = MongoDBUtility.MongoDBContext;
+            _userRepository = new UserRepository(context);
+            _skillRepository = new SkillRepository(context);
 
-
+            _userService = new UserService(_userRepository);
+            _skillService = new SkillService(_skillRepository);
             config = new ConfigurationBuilder().AddJsonFile("appsettings.test.json").Build();
         }
+
+        /// <summary>
+        /// Static constructor to create text file to write test result
+        /// </summary>
         static BoundaryTest()
         {
             fileUtility = new FileUtility
@@ -70,14 +83,18 @@ namespace SkillTracker.Tests.TestCases
 
 
         // Test methods for User Service
-
+        /// <summary>
+        /// Validate Email Id
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BoundaryTestFor_ValidEmail()
         {
             try
             {
                 bool isEmail = false;
-                _userService = new UserService(context);
+                //_userRepository.Setup(repo => repo.CreateNewUser(_user)).ReturnsAsync(_user);
+              
                 if (_user.Email != "")
                 {
                     Regex regex = new Regex(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$");
@@ -93,7 +110,7 @@ namespace SkillTracker.Tests.TestCases
                             cases newcase = new cases
                             {
                                 TestCaseType = "Boundary",
-                                Name = "BoundaryTestFor_ValidEmail",
+                                Name = "TestFor_ValidEmail",
                                 expectedOutput = "True",
                                 weight = 5,
                                 mandatory = "True",
@@ -119,7 +136,7 @@ namespace SkillTracker.Tests.TestCases
                     cases newcase = new cases
                     {
                         TestCaseType = "Boundary",
-                        Name = "BoundaryTestFor_ValidEmail",
+                        Name = "TestFor_ValidEmail",
                         expectedOutput = "False",
                         weight = 1,
                         mandatory = "False",
@@ -129,14 +146,18 @@ namespace SkillTracker.Tests.TestCases
                 }
             }
         }
+
+        /// <summary>
+        /// Validate Mobile number length
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BoundaryTestFor_ValidMobileNumberLength()
         {
             try
             {
                 bool isMobile = false;
-                _userService = new UserService(context);
-                if (_user.Mobile != 0)
+             if (_user.Mobile != 0)
                 {
                     if (_user.Mobile.ToString().Length == 10)
                     {
@@ -153,7 +174,7 @@ namespace SkillTracker.Tests.TestCases
                             cases newcase = new cases
                             {
                                 TestCaseType = "Boundary",
-                                Name = "BoundaryTestFor_ValidMobileNumberLength",
+                                Name = "TestFor_ValidMobileNumberLength",
                                 expectedOutput = "True",
                                 weight = 5,
                                 mandatory = "True",
@@ -179,7 +200,7 @@ namespace SkillTracker.Tests.TestCases
                     cases newcase = new cases
                     {
                         TestCaseType = "Boundary",
-                        Name = "BoundaryTestFor_ValidMobileNumberLength",
+                        Name = "TestFor_ValidMobileNumberLength",
                         expectedOutput = "False",
                         weight = 1,
                         mandatory = "False",
@@ -189,6 +210,12 @@ namespace SkillTracker.Tests.TestCases
                 }
             }
         }
+
+
+        /// <summary>
+        /// Validate First name and last name 
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BoundaryTestFor_ValidFirstAndLastName()
         {
@@ -196,7 +223,7 @@ namespace SkillTracker.Tests.TestCases
             {
                 bool isFirstNameValid = true;
                 bool isLastNameValid = true;
-                _userService = new UserService(context);
+                
                 if (_user.FirstName != "" && _user.LastName != "")
                 {
                     long f;
@@ -214,7 +241,7 @@ namespace SkillTracker.Tests.TestCases
                             cases newcase = new cases
                             {
                                 TestCaseType = "Boundary",
-                                Name = "BoundaryTestFor_ValidFirstAndLastName",
+                                Name = "TestFor_ValidFirstAndLastName",
                                 expectedOutput = "True",
                                 weight = 5,
                                 mandatory = "True",
@@ -241,8 +268,8 @@ namespace SkillTracker.Tests.TestCases
                     cases newcase = new cases
                     {
                         TestCaseType = "Boundary",
-                        Name = "BoundaryTestFor_ValidFirstAndLastName",
                         expectedOutput = "False",
+                        Name = "TestFor_ValidFirstAndLastName",
                         weight = 1,
                         mandatory = "False",
                         desc = "expecting to create new user after validating firstname and lastname as non-numeric only but fail"
@@ -261,7 +288,7 @@ namespace SkillTracker.Tests.TestCases
             {
                 bool isSkillNameValid = true;
              
-                _skillService = new SkillService(context);
+                
                 if (_skill.SkillName != "" )
                 {
                     long f;
@@ -278,7 +305,7 @@ namespace SkillTracker.Tests.TestCases
                             cases newcase = new cases
                             {
                                 TestCaseType = "Boundary",
-                                Name = "BoundaryTestFor_ValidSkillName",
+                                Name = "TestFor_ValidSkillName",
                                 expectedOutput = "True",
                                 weight = 5,
                                 mandatory = "True",
@@ -305,7 +332,7 @@ namespace SkillTracker.Tests.TestCases
                     cases newcase = new cases
                     {
                         TestCaseType = "Boundary",
-                        Name = "BoundaryTestFor_ValidSkillName",
+                        Name = "TestFor_ValidSkillName",
                         expectedOutput = "False",
                         weight = 1,
                         mandatory = "False",

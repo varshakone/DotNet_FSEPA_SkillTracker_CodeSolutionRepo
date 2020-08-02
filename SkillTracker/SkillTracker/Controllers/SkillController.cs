@@ -13,13 +13,27 @@ namespace SkillTracker.API.Controllers
     [ApiController]
     public class SkillController : ControllerBase
     {
+        //Reference of type ISkillService
         private readonly ISkillService _skillService;
+
+
+        /// <summary>
+        /// Inject SkillService object through constructor
+        /// </summary>
+        /// <param name="skillService"></param>
         public SkillController(ISkillService skillService)
         {
             _skillService = skillService;
         }
 
-        //Rest post api to return success message after creating skill
+
+        /// <summary>
+        /// Rest post api to return success message after creating skill
+        /// Post:api/skill/new
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        
         [Route("api/skill/new")]
         [HttpPost]
         public async Task<ActionResult<String>> NewSkill(Skill skill)
@@ -27,7 +41,7 @@ namespace SkillTracker.API.Controllers
             try
             {
                 //Business logic to call user servic method which returns success message after creating new skill
-                var result = _skillService.AddNewSkill(skill);
+                var result =await _skillService.AddNewSkill(skill);
                 return result;
             }
             catch (Exception exception)
@@ -37,7 +51,12 @@ namespace SkillTracker.API.Controllers
 
         }
 
-        //Rest post api to return 1 after updation of skill
+        /// <summary>
+        /// Rest post api to return 1 after updation of skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        
         [Route("api/skill/edit")]
         [HttpPost]
         public async Task<ActionResult<int>> ReviseSkill(Skill skill)
@@ -45,7 +64,7 @@ namespace SkillTracker.API.Controllers
             try
             { 
                 //Business logic to call skill servic method which returns 1 on successfull updation of skill
-                var result = _skillService.EditSkill(skill);
+                var result =await _skillService.EditSkill(skill);
                 return result;
             }
             catch (Exception exception)
@@ -55,7 +74,12 @@ namespace SkillTracker.API.Controllers
 
         }
 
-        //Rest post api to return 1 after deletion of skill
+        /// <summary>
+        /// Rest post api to return 1 after deletion of skill
+        /// </summary>
+        /// <param name="SkillName"></param>
+        /// <returns></returns>
+        
         [Route("api/skill/delete")]
         [HttpPost]
         public async Task<ActionResult<int>> DestroySkill (String SkillName)
@@ -63,7 +87,7 @@ namespace SkillTracker.API.Controllers
             try
             {
                 //Business logic to call skill servic method which returns 1 on successfull deletion of skill
-                var result = _skillService.DeleteSkill(SkillName);
+                var result =await _skillService.DeleteSkill(SkillName);
                 return result;
             }
             catch (Exception exception)

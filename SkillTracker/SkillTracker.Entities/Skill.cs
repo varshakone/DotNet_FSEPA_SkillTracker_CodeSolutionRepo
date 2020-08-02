@@ -17,7 +17,7 @@ namespace SkillTracker.Entities
         [BsonRequired]
         public String SkillName { get; set; }
 
-        [BsonElement("Skill Leve;")]
+        [BsonElement("Skill Level")]
         [BsonRequired]
         public SkillLevel SkillLevel { get; set; }
 

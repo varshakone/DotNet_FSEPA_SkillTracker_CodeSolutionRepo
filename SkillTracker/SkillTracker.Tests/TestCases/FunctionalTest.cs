@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using SkillTracker.API;
+
 using SkillTracker.Entities;
 using SkillTracker.Tests.Utility;
 using System;
@@ -60,7 +60,12 @@ namespace SkillTracker.Tests.TestCases
             fileUtility.CreateTextFile();
         }
 
-        //Test methods for Skill Controller
+        /// <summary>
+        /// Test methods for Skill Controller
+        /// Test method to create new skill
+        /// </summary>
+        /// <returns></returns>
+        
         [Fact]
         public async Task FunctionalTestFor_NewSkill_ActionMethod()
         {
@@ -136,6 +141,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_ReviseSkill_ActionMethod()
         {
@@ -213,6 +222,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to delete skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_DestroySkill_ActionMethod()
         {
@@ -287,7 +300,13 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for User Controller
+
+
+        /// <summary>
+        /// Test Methods for User Controller
+        /// test method to create new user
+        ///</summary>
+        /// <returns></returns>
 
         [Fact]
         public async Task FunctionalTestFor_NewUser_ActionMethod()
@@ -363,6 +382,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_ReviseUser_ActionMethod()
         {
@@ -450,6 +473,11 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+
+        /// <summary>
+        /// test method to delete user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_DestroyUser_ActionMethod()
         {
@@ -532,7 +560,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for Admin Controller
+        /// <summary>
+        /// test method to retrieve all users
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_AllUsers_ActionMethod()
         {
@@ -541,7 +572,7 @@ namespace SkillTracker.Tests.TestCases
 
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/admin/alluser", null);
+                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/alluser", null);
                 var status = response.EnsureSuccessStatusCode();
 
                 List<User> alluserResult =null;
@@ -606,13 +637,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+
+        /// <summary>
+        /// test method to search user by first name
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_InspectUserByFirstName_ActionMethod()
         {
             try
             { 
             String userResponse = string.Empty;
-            HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/admin/byfirstname?firstname=" + _user.FirstName , null);
+            HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byfirstname?firstname=" + _user.FirstName , null);
             var status = response.EnsureSuccessStatusCode();
 
             User userResult = null;
@@ -678,6 +714,10 @@ namespace SkillTracker.Tests.TestCases
 }
         }
 
+        /// <summary>
+        /// test method to search user by email id
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_InspectUserByEmail_ActionMethod()
         {
@@ -685,7 +725,7 @@ namespace SkillTracker.Tests.TestCases
             {
                
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/admin/byemail?email=" + _user.Email, null);
+                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byemail?email=" + _user.Email, null);
                 var status = response.EnsureSuccessStatusCode();
 
                 User userResult = null;
@@ -751,6 +791,10 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by mobile number
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_InspectUserByMobileNumber_ActionMethod()
         {
@@ -758,7 +802,7 @@ namespace SkillTracker.Tests.TestCases
             {
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/admin/bymobile?mobile=" + _user.Mobile, null);
+                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/bymobile?mobile=" + _user.Mobile, null);
                 var status = response.EnsureSuccessStatusCode();
 
                 User userResult = null;
@@ -823,6 +867,11 @@ namespace SkillTracker.Tests.TestCases
                 }
             }
         }
+
+        /// <summary>
+        /// test method to search user by it's skill range
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task FunctionalTestFor_InspectUserBySkillRange_ActionMethod()
         {
@@ -830,7 +879,7 @@ namespace SkillTracker.Tests.TestCases
             {
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/admin/byskillrange?startvalue=" + 2, null);
+                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byskillrange?startvalue=" + 2+"&endvalue="+2, null);
                 var status = response.EnsureSuccessStatusCode();
 
                List<User> userResult = null;

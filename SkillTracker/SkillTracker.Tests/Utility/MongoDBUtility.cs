@@ -20,16 +20,17 @@ namespace SkillTracker.Tests.Utility
         public MongoDBUtility()
         {
             _mockContext = new Mock<IMongoDBContext>();
-            _mockCollectionSkill = new Mock<IMongoCollection<Skill>>();
+             _mockCollectionSkill = new Mock<IMongoCollection<Skill>>();
             _mockCollectionUser = new Mock<IMongoCollection<User>>();
             _mockOptions = new Mock<IOptions<MongoSettings>>();
             settings = new MongoSettings()
             {
-                Connection = "mongodb://localhost:27017",
-                DatabaseName = "SkillTrackerDB"
+                
+                Connection = "mongodb://user:password@127.0.0.1:27017/guestbook",
+            DatabaseName= "guestbook"
             };
             _mockOptions.Setup(s => s.Value).Returns(settings);
-            mongoDBcontext = new MongoDBContext(_mockOptions.Object);
+             mongoDBcontext = new MongoDBContext(_mockOptions.Object);
         }
          
         

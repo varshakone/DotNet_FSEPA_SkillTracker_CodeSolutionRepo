@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SkillTracker.Entities;
 using SkillTracker.BusinessLayer.Interface;
 using SkillTracker.BusinessLayer.Service;
+using SkillTracker.BusinessLayer.Service.Repository;
 
 namespace SkillTracker.Tests.Utility
 {
@@ -106,25 +107,25 @@ namespace SkillTracker.Tests.Utility
             try
             {
                 MongoDBUtility mongoDBUtility = new MongoDBUtility();
+                UserRepository userRepository = new UserRepository(mongoDBUtility.MongoDBContext);
+                IUserService userService = new UserService(userRepository);
 
-                IUserService userService = new UserService(mongoDBUtility.MongoDBContext);
-
-                var result = userService.ValidateUserExist(user);
+                var result = userRepository.ValidateUserExist(user);
                 if (result == "User Exist")
                 {
-                    var rr = userService.RemoveUser(user.FirstName, user.LastName);
+                    var rr = userService.RemoveUser(user.FirstName, user.LastName).Result;
 
-                    IAdminService adminService = new AdminService(mongoDBUtility.MongoDBContext);
-                    var lst = adminService.GetAllUsers();
+                   
+                    var lst = userService.GetAllUsers();
                     if (rr ==1)
                     {
-                        result = userService.CreateNewUser(user);
+                        result =userService.CreateNewUser(user).Result;
                     }
                   
                 }
                 else
                 {
-                     result =  userService.CreateNewUser(user);
+                     result =  userService.CreateNewUser(user).Result;
                 }
                
             }
@@ -138,9 +139,9 @@ namespace SkillTracker.Tests.Utility
             try
             {
                 MongoDBUtility mongoDBUtility = new MongoDBUtility();
-
-                IUserService userService = new UserService(mongoDBUtility.MongoDBContext);
-                var result = userService.ValidateUserExist(user);
+                UserRepository userRepository = new UserRepository(mongoDBUtility.MongoDBContext);
+                IUserService userService = new UserService(userRepository);
+                var result = userRepository.ValidateUserExist(user);
                 if(result == "User Exist")
                 {
                     userService.RemoveUser(user.FirstName, user.LastName);

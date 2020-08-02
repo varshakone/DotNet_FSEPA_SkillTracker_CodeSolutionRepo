@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using Moq;
 using SkillTracker.BusinessLayer.Interface;
 using SkillTracker.BusinessLayer.Service;
+using SkillTracker.BusinessLayer.Service.Repository;
 using SkillTracker.DataLayer;
 using SkillTracker.Entities;
 using SkillTracker.Tests.Utility;
@@ -20,15 +21,14 @@ namespace SkillTracker.Tests.TestCases
         // private references declaration
         private User _user;
         IConfigurationRoot config;
-        private Mock<IMongoCollection<Skill>> _mockCollectionSkill;
-        private Mock<IMongoCollection<User>> _mockCollectionUser;
-        private Mock<IMongoDBContext> _mockContext;
+        private readonly IUserRepository _userRepository;
+        private readonly ISkillRepository _skillRepository;
         private Skill _skill;
-        private MongoDBContext context;
+        private IMongoDBContext context;
 
         private SkillService _skillService;
         private UserService _userService;
-        private AdminService _adminService;
+        
         static FileUtility fileUtility;
         String testResult;
 
@@ -36,10 +36,13 @@ namespace SkillTracker.Tests.TestCases
         public ExceptionTest()
         {
             MongoDBUtility mongoDBUtility = new MongoDBUtility();
-            _mockContext = mongoDBUtility.MockContext;
-            _mockCollectionSkill = mongoDBUtility.MockCollectionSkill;
-            _mockCollectionUser = mongoDBUtility.MockCollectionUser;
             context = mongoDBUtility.MongoDBContext;
+
+            _userRepository = new UserRepository(context);
+            _skillRepository = new SkillRepository(context);
+
+            _userService = new UserService(_userRepository);
+            _skillService = new SkillService(_skillRepository);
 
 
             _skill = new Skill
@@ -76,7 +79,11 @@ namespace SkillTracker.Tests.TestCases
 
 
 
-        //Test methods for Skill Service
+        /// <summary>
+        /// Test methods for Skill Service
+        /// Test method to create new skill,expecting to throw exception
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_AddNewSkill_Fail()
         {
@@ -84,8 +91,8 @@ namespace SkillTracker.Tests.TestCases
             {
                 _skill = null;
 
-                _skillService = new SkillService(context);
-                var result = _skillService.AddNewSkill(_skill);
+                
+                var result =await _skillService.AddNewSkill(_skill);
                 if (result == "New Skill Added")
                 {
                     testResult = "ExceptionTestFor_AddNewSkill_Fail=" + "False";
@@ -132,14 +139,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_EditSkill_Fail()
         {
             try
             {
                 _skill = null;
-                _skillService = new SkillService(context);
-                var result = _skillService.EditSkill(_skill);
+                
+                var result =await _skillService.EditSkill(_skill);
                 if (result == 1)
                 {
                     testResult = "ExceptionTestFor_EditSkill_Fail=" + "False";
@@ -186,14 +197,19 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+
+        /// <summary>
+        /// test method to delete skill
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_DeleteSkill_Fail()
         {
             try
             {
                 _skill = null;
-                _skillService = new SkillService(context);
-                var result = _skillService.DeleteSkill(_skill.SkillName);
+                
+                var result =await _skillService.DeleteSkill(_skill.SkillName);
                 if (result == 1)
                 {
                     testResult = "ExceptionTestFor_DeleteSkill_Fail=" + "False";
@@ -240,7 +256,11 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for User Service
+        /// <summary>
+        /// Test Methods for User Service
+        /// test method to create new user
+        ///</summary>
+        /// <returns></returns>
 
         [Fact]
         public async Task ExceptionTestFor_CreateNewUser_Fail()
@@ -248,8 +268,8 @@ namespace SkillTracker.Tests.TestCases
             try
             {
                 _user = null;
-                _userService = new UserService(context);
-                var result =  _userService.CreateNewUser(_user);
+                
+                var result =await  _userService.CreateNewUser(_user);
                 if (result == "New User Register")
                 {
                     testResult = "ExceptionTestFor_CreateNewUser_Fail=" + "False";
@@ -296,14 +316,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to update user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_UpdateUser_Fail()
         {
             try
             {
                 _user = null;
-                _userService = new UserService(context);
-                var result = _userService.UpdateUser(_user);
+               
+                var result =await _userService.UpdateUser(_user);
                 if (result == 1)
                 {
                     testResult = "ExceptionTestFor_UpdateUser_Fail=" + "False";
@@ -350,14 +374,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to delete user
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_RemoveUser_Fail()
         {
             try
             {
                 _user = null;
-                _userService = new UserService(context);
-                var result = _userService.RemoveUser(_user.FirstName, _user.LastName);
+                
+                var result =await _userService.RemoveUser(_user.FirstName, _user.LastName);
                 if (result == 1)
                 {
                     testResult = "ExceptionTestFor_RemoveUser_Fail=" + "False";
@@ -404,14 +432,17 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
-        //Test Methods for Admin Service
+        /// <summary>
+        /// test method to retrieve all users
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_AllUsers_Fail()
         {
             try
             {
-                _adminService = new AdminService(context);
-                var result = _adminService.GetAllUsers() as List<User>;
+                
+                var result =await _userService.GetAllUsers() as List<User>;
                 if (result != null)
                 {
                     testResult = "ExceptionTestFor_AllUsers_Fail=" + "True";
@@ -458,15 +489,19 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by first name
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_SearchUserByFirstName_Fail()
         {
             try
             {
                
-                _adminService = new AdminService(context);
+                
                 _user.FirstName = null;
-                var result =  _adminService.SearchUserByFirstName(_user.FirstName);
+                var result =await  _userService.SearchUserByFirstName(_user.FirstName);
                 if (result != null)
                 {
                     testResult = "ExceptionTestFor_SearchUserByFirstName_Fail=" + "False";
@@ -513,14 +548,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by email id
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_SearchUserByEmail_Fail()
         {
             try
             {
                 _user.Email = null;
-                _adminService = new AdminService(context);
-                var result =  _adminService.SearchUserByEmail(_user.Email);
+                
+                var result =await  _userService.SearchUserByEmail(_user.Email);
                 if (result != null)
                 {
                     testResult = "ExceptionTestFor_SearchUserByEmail_Fail=" + "False";
@@ -567,14 +606,18 @@ namespace SkillTracker.Tests.TestCases
             }
         }
 
+        /// <summary>
+        /// test method to search user by mobile number
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_SearchUserByMobileNumber_Fail()
         {
             try
             {
                 _user.Mobile = 0;
-                _adminService = new AdminService(context);
-                var result =  _adminService.SearchUserByMobile(_user.Mobile);
+                
+                var result =await  _userService.SearchUserByMobile(_user.Mobile);
                 if (result != null)
                 {
                     testResult = "ExceptionTestFor_SearchUserByMobileNumber_Fail=" + "False";
@@ -620,14 +663,19 @@ namespace SkillTracker.Tests.TestCases
                 }
             }
         }
+
+        /// <summary>
+        /// test method to search user by it's skill range
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ExceptionTestFor_SearchUserBySkillRange_Fail()
         {
             try
             {
                 int range = 0;
-                _adminService = new AdminService(context);
-                var result =  _adminService.SearchUserBySkillRange(range) as List<User>;
+                
+                var result =await  _userService.SearchUserBySkillRange(0,0) as List<User>;
                 if (result.Count != 0)
                 {
                     testResult = "ExceptionTestFor_SearchUserBySkillRange_Fail=" + "False";
@@ -649,7 +697,7 @@ namespace SkillTracker.Tests.TestCases
                 }
                 else
                 {
-                    Assert.Equal(1,result.Count);
+                    Assert.NotEmpty(result);
                 }
             }
             catch (Exception exception)

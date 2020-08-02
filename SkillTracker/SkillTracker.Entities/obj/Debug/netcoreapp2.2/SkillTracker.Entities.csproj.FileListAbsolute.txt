@@ -1,0 +1,9 @@
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\bin\Debug\netcoreapp2.2\SkillTracker.Entities.deps.json
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\bin\Debug\netcoreapp2.2\SkillTracker.Entities.dll
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\bin\Debug\netcoreapp2.2\SkillTracker.Entities.pdb
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.AssemblyInfoInputs.cache
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.AssemblyInfo.cs
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.csproj.CoreCompileInputs.cache
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.dll
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.pdb
+F:\f\varsha_Kone\IIHT\CaseStudy\Revised\FSEPA\CodeSolution\SkillTracker\SkillTracker.Entities\obj\Debug\netcoreapp2.2\SkillTracker.Entities.csprojAssemblyReference.cache

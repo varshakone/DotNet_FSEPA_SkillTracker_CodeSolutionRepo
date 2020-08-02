@@ -13,11 +13,12 @@ namespace SkillTracker.Entities
         [XmlElement(ElementName ="test-case-type")]
         public String TestCaseType { get; set; }
 
-        [XmlElement(ElementName = "name")]
-        public String Name { get; set; }
-
         [XmlElement(ElementName = "expected-output")]
         public String expectedOutput { get; set; }
+
+        [XmlElement(ElementName = "name")]
+        public String Name { get; set; }
+              
 
         [XmlElement(ElementName = "weight")]
         public int weight { get; set; }
