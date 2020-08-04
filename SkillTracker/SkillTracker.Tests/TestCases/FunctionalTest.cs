@@ -157,7 +157,7 @@ namespace SkillTracker.Tests.TestCases
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(_skill), Encoding.UTF8, "application/json");
 
                 String skillResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/skill/edit", content);
+                HttpResponseMessage response = await _client.PutAsync("http://localhost:9090/api/skill/edit", content);
                 var status = response.EnsureSuccessStatusCode();
 
                 int editResult = 0;
@@ -235,7 +235,7 @@ namespace SkillTracker.Tests.TestCases
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(_skill.SkillName), Encoding.UTF8, "application/json");
 
                 String skillResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/skill/delete?SkillName=" + _skill.SkillName,null);
+                HttpResponseMessage response = await _client.DeleteAsync("http://localhost:9090/api/skill/delete?SkillName=" + _skill.SkillName);
                 var status = response.EnsureSuccessStatusCode();
 
                 int deleteResult = 0;
@@ -408,7 +408,7 @@ namespace SkillTracker.Tests.TestCases
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/edit", content);
+                HttpResponseMessage response = await _client.PutAsync("http://localhost:9090/api/user/edit", content);
                 var status = response.EnsureSuccessStatusCode();
 
                 int editResult = 0;
@@ -495,7 +495,7 @@ namespace SkillTracker.Tests.TestCases
                 fileUtility.TestData(user);
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/delete?firstname=" + user.FirstName+ "&lastname="+ user.LastName,null);
+                HttpResponseMessage response = await _client.DeleteAsync("http://localhost:9090/api/user/delete?firstname=" + user.FirstName+ "&lastname="+ user.LastName);
                 var status = response.EnsureSuccessStatusCode();
 
                 int deleteResult = 0;
@@ -572,7 +572,7 @@ namespace SkillTracker.Tests.TestCases
 
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/alluser", null);
+                HttpResponseMessage response = await _client.GetAsync("http://localhost:9090/api/user/alluser");
                 var status = response.EnsureSuccessStatusCode();
 
                 List<User> alluserResult =null;
@@ -648,7 +648,7 @@ namespace SkillTracker.Tests.TestCases
             try
             { 
             String userResponse = string.Empty;
-            HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byfirstname?firstname=" + _user.FirstName , null);
+            HttpResponseMessage response = await _client.GetAsync("http://localhost:9090/api/user/byfirstname?firstname=" + _user.FirstName );
             var status = response.EnsureSuccessStatusCode();
 
             User userResult = null;
@@ -725,7 +725,7 @@ namespace SkillTracker.Tests.TestCases
             {
                
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byemail?email=" + _user.Email, null);
+                HttpResponseMessage response = await _client.GetAsync("http://localhost:9090/api/user/byemail?email=" + _user.Email);
                 var status = response.EnsureSuccessStatusCode();
 
                 User userResult = null;
@@ -802,7 +802,7 @@ namespace SkillTracker.Tests.TestCases
             {
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/bymobile?mobile=" + _user.Mobile, null);
+                HttpResponseMessage response = await _client.GetAsync("http://localhost:9090/api/user/bymobile?mobile=" + _user.Mobile);
                 var status = response.EnsureSuccessStatusCode();
 
                 User userResult = null;
@@ -879,7 +879,7 @@ namespace SkillTracker.Tests.TestCases
             {
 
                 String userResponse = string.Empty;
-                HttpResponseMessage response = await _client.PostAsync("http://localhost:9090/api/user/byskillrange?startvalue=" + 2+"&endvalue="+2, null);
+                HttpResponseMessage response = await _client.GetAsync("http://localhost:9090/api/user/byskillrange?startvalue=" + 2+"&endvalue="+2);
                 var status = response.EnsureSuccessStatusCode();
 
                List<User> userResult = null;

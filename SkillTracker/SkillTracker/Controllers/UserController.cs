@@ -9,7 +9,7 @@ using SkillTracker.Entities;
 
 namespace SkillTracker.API.Controllers
 {
-   
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace SkillTracker.API.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         
-        [Route("api/user/new")]
+        [Route("new")]
         [HttpPost]
         public async Task< ActionResult<String>> CreateNewUser(User user)
         {
@@ -48,8 +48,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         
-        [Route("api/user/edit")]
-        [HttpPost]
+        [Route("edit")]
+        [HttpPut]
         public async Task<ActionResult<int>>  ReviseUser(User user)
         {
             try
@@ -72,8 +72,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="lastname"></param>
         /// <returns></returns>
         
-        [Route("api/user/delete")]
-        [HttpPost]
+        [Route("delete")]
+        [HttpDelete]
         public async Task< ActionResult<int>> Destroyuser(String firstname, String lastname)
         {
             try
@@ -89,29 +89,14 @@ namespace SkillTracker.API.Controllers
 
         }
 
-        [Route("/api/admin/test")]
-        [HttpGet]
-        public ActionResult<String> Get()
-        {
-            try
-            {
-
-                return "Hi";
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.ToString());
-            }
-
-        }
-
+       
         /// <summary>
         /// Rest post api to return list of users
         /// </summary>
         /// <returns></returns>
         
-        [Route("/api/user/alluser")]
-        [HttpPost]
+        [Route("alluser")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> AllUsers()
         {
             try
@@ -133,8 +118,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="firstname"></param>
         /// <returns></returns>
         
-        [Route("/api/user/byfirstname")]
-        [HttpPost]
+        [Route("byfirstname")]
+        [HttpGet]
         public async Task<ActionResult<User>> SearchByFirstName(String firstname)
         {
             try
@@ -156,8 +141,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="email"></param>
         /// <returns></returns>
         
-        [Route("/api/user/byemail")]
-        [HttpPost]
+        [Route("byemail")]
+        [HttpGet]
         public async Task<ActionResult<User>> SearchByEmail(String email)
         {
             try
@@ -179,8 +164,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="mobile"></param>
         /// <returns></returns>
         
-        [Route("/api/user/bymobile")]
-        [HttpPost]
+        [Route("bymobile")]
+        [HttpGet]
         public async Task<ActionResult<User>> SearchByMobileNumber(long mobile)
         {
             try
@@ -203,8 +188,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="endvalue"></param>
         /// <returns></returns>
         
-        [Route("/api/user/byskillrange")]
-        [HttpPost]
+        [Route("byskillrange")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> SearchBySkillRange(int startvalue,int endvalue)
         {
             try

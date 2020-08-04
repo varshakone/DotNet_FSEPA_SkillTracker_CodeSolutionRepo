@@ -9,7 +9,7 @@ using SkillTracker.Entities;
 
 namespace SkillTracker.API.Controllers
 {
-    
+    [Route("api/skill")]
     [ApiController]
     public class SkillController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace SkillTracker.API.Controllers
         /// <param name="skill"></param>
         /// <returns></returns>
         
-        [Route("api/skill/new")]
+        [Route("new")]
         [HttpPost]
         public async Task<ActionResult<String>> NewSkill(Skill skill)
         {
@@ -57,8 +57,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="skill"></param>
         /// <returns></returns>
         
-        [Route("api/skill/edit")]
-        [HttpPost]
+        [Route("edit")]
+        [HttpPut]
         public async Task<ActionResult<int>> ReviseSkill(Skill skill)
         {
             try
@@ -80,8 +80,8 @@ namespace SkillTracker.API.Controllers
         /// <param name="SkillName"></param>
         /// <returns></returns>
         
-        [Route("api/skill/delete")]
-        [HttpPost]
+        [Route("delete")]
+        [HttpDelete]
         public async Task<ActionResult<int>> DestroySkill (String SkillName)
         {
             try
