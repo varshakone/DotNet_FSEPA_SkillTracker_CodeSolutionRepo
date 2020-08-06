@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkillTracker.Entities\SkillTracker.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SkillTracker.DataLayer">
+      <HintPath>..\SkillTracker.DataLayer\bin\Debug\netcoreapp2.2\SkillTracker.DataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="SkillTracker.Entities">
+      <HintPath>..\SkillTracker.Entities\bin\Debug\netcoreapp2.2\SkillTracker.Entities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
